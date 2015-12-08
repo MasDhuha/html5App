@@ -171,22 +171,30 @@ FSGlobal.$clearbtn = $("#clearbtn") ; // HAND JAMMER
 ////BUG APPLICATION FUNCTIONALITY/////
 /////////////////////////////////////
 
+//serialize will not work on a button because it is considered a successful event, this function bubbles up a level to figure out the attr.
 	$(".button").on("click", function(e){ //ON ANY BUTTON CLICK, RETURN ID 
-	  	FSGlobal.btnID = this.id;
+	  	e.preventDefault(); //might not need
+	  	var button = $(e.target);
+	  	var result = button.parents('form').serialize()
+	  					+ '&'
+	  					+encodeURI(button.attr('name'))
+	  					+ '='
+	  					+encodeURI(button.attr('value'))
+	  					;
+	  	FSGlobal.btnID = result;
 	  	googleSpreadsheetIntegration(); //then run googleSpreadsheetIntegration.  
 	 });
 
 //SUBMIT THE INFORMATION IN THE SAID FIELDS TO THEIR CORRESPONDING COLUMNS IN THE GOOGLE SCRIPT WEB APP//
-//STILL WORKING ON THE COLUMN FOR WHICH BUTTON IS SELECTED.  DIFFICULT BECAUSE OF ID'S, COLUMN NAMES, FIND().
+
 	function googleSpreadsheetIntegration(event){
-		var request;
-	    // Abort any pending request
-	    if (request) {
-	        request.abort();
-	    }
-	    var $form = $("#bugNotes, #bibNumber, #raceName") //, ('#' + FSGlobal.btnID)); //FIND THE IDS THAT ARE EXACTLY AS THE GOOGLE HEADER, TURN THE BUTTON CLICKED INTO AN ID THAT IS ALSO SEARCHED.
-	    var $inputs = $form.find("input, select, textarea, text"); // FROM THE SELECTED ID'S SEARCH THEM FOR INPUTS, AND TEXT.
-	    var serializedData = $form.serialize(); //SERIALIZED PUTS THE FOUND DATA INTO A STRING TO BE SENT TO GOOGLE SCRIPT.
+
+	    var $inputs = $form.find("input, select, textarea, text");
+	    var serializedData = $form.serialize() + FSGlobal.btnID; 
+	    console.log(serializedData,"serializedData");
+	    var $test = $(document.getElementById(FSGlobal.btnID));
+	    console.log($test.serialize(),"button serialized");
+	    var $focused = $(':focus');
 	    $inputs.prop("disabled", true); //NEED TO DISABLE ANY PROPERTIES ALREADY ON THE INPUTS.
 	    request = $.ajax({ // AJAX REQUEST.
 	        url: "https://script.google.com/macros/s/AKfycbxPXv_I8FJV6zzyqpRPY5eknM_tQ3a4PZ_RC8qPk3VJvGcAHtw/exec",
