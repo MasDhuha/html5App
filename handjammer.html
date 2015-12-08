@@ -1,0 +1,120 @@
+
+<!doctype <!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+  	<title>Rhesus' Little Helper</title>
+
+    <!--FAVICON-->
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- STYLE-->
+    <link rel="stylesheet" href="style/foundation.css"/>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/jquery.tagsinput.css">
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+
+    <!-- PRE-SCRIPT-->
+    <script src="script/vendor/modernizr.js"></script>
+
+  </head>
+
+<body>
+  <!--HEADER NAVIGATION-->
+  <div class="icon-bar three-up">
+    <a class="item" a href="index.html">
+      <i class="fi-plus"></i>
+      <label>Calculator</label>
+    </a>
+    <a class="item" a href="handjammer.html">
+      <i class="fi-microphone"></i>
+      <label>Hand Jammer</label>
+    </a>
+    <a class="item" a href="bugs.html">
+      <i class="fi-clipboard-pencil"></i>
+      <label>Bugs</label>
+    </a>
+  </div>
+  <!--END OF HEADER-->
+
+<!--HAND JAMMER-->
+<form>
+  <div class="row" style="padding-top:1em">
+    <div class="small-2 large-2 columns">
+      <label>
+        <input type="number" placeholder="1" style="font-size:2em;color:black !important; padding:0px !important; height:65% !important" id="handJammerPlaces">
+      </label>
+    </div>
+    <div class="small-10 large-8 columns">
+      <label>
+        <input type="text" placeholder="999" style="font-size:2em;color:black !important; height:65% !important" id="handJammerNumbers">
+      </label>
+    </div>
+  </div>
+</form> 
+<!--ADD option buttons here-->
+<form>
+  <div class="row">
+    <div class="small-4 large-4 columns">
+      <a href="#" class="button expand button alert" id="clearbtn">Clear</a>
+    </div>
+    <div class="small-4 large-4 columns">
+      <a href="#" class="button expand button success" id="savebtn">Save</a>
+    </div>
+    <div class="small-4 large-4 columns">
+      <a href="#" class="button expand button default" id="findbtn">Find</a>
+    </div>
+  </div>
+</form>
+
+
+
+<!---SCRIPTS -->
+    <script src="script/vendor/jquery.js"></script>
+    <script src="script/jquery.tagsinput.js"></script>
+    <script src='script/jquery.transit.js'></script>
+    <script src="script/foundation.min.js"></script>
+    <script src="script/foundation/foundation.slider.js"></script>
+    <script src="script/foundation/foundation.offcanvas.js"></script>
+    <script src="script/bower_components/moment/moment.js"></script>
+    <script src="script/mousetrap.min.js"></script>
+    <script src="script/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/1.1.0/annyang.min.js"></script>
+    <script src="script/app.js"></script>
+    <script> $(document).foundation({ }); </script>
+
+    <script>
+    if (annyang) {
+        var commands = {
+            'Hello': function() {
+                alert('Hi! I can hear you.');
+            }
+        };
+        annyang.addCommands(commands);
+        annyang.start(); 
+    }
+    
+</script>
+
+
+</body>
+</html>

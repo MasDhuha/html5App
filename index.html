@@ -1,0 +1,139 @@
+
+<!doctype <!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+  	<title>Rhesus' Little Helper</title>
+
+    <!--FAVICON-->
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- STYLE-->
+    <link rel="stylesheet" href="style/foundation.css"/>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/jquery.tagsinput.css">
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+
+    <!-- PRE-SCRIPT-->
+    <script src="script/vendor/modernizr.js"></script>
+
+  </head>
+
+<body>
+  <!--HEADER NAVIGATION-->
+  <div class="icon-bar three-up">
+    <a class="item" a href="index.html">
+      <i class="fi-plus"></i>
+      <label>Calculator</label>
+    </a>
+    <a class="item" a href="handjammer.html">
+      <i class="fi-microphone"></i>
+      <label>Hand Jammer</label>
+    </a>
+    <a class="item" a href="bugs.html">
+      <i class="fi-clipboard-pencil"></i>
+      <label>Bugs</label>
+    </a>
+  </div>
+  <!--END OF HEADER-->
+
+
+<!--CALCULATOR TIME INPUTS-->
+
+   <form>
+    <div class="grid-block">
+      <div class="row">
+        <div class="small-4 large-4 columns" >
+          <label class="timeLabel">Time 1
+            <input type="text" placeholder="02:20:33.111" id="time1"/>
+          </label>
+        </div>
+        <div class="small-4 large-4 columns" >
+          <label class="timeLabel">Time 2
+            <input type="text" placeholder="02:11:22.010" id="time2" />
+          </label>
+        </div>
+        <div class="small-4 large-4 columns" >
+          <label class="timeLabel">Difference
+            <input type="text" placeholder="00:09:11.100" id="timedifference" />
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block">
+      <div class="row">
+        <div class="small-6 large-6 columns">
+         <label class="timeLabel">Lap
+          <input type="text" placeholder="00:30:10.000" id="lap">
+        </label>
+        </div>
+        <div class="small-6 large-6 columns">
+          <label class="timeLabel">Lap + Difference
+            <input type="text" placeholder="0:39:21.100" id="lapPlusDifference">
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+
+    <!--CALCULATOR SECTION-->
+
+        <section class="main-section"> <!-- why these classes, guessing need to ad js to make it function-->
+            <div class="row keyrow">
+              <key><digit>7</digit></key><key><digit>8</digit></key><key><digit>9</digit></key>
+              <key class="spare"></key>
+            </div>
+            <div class="row keyrow">
+              <key><digit>4</digit></key><key><digit>5</digit></key><key><digit>6</digit></key>
+              <key class="spare"></key>
+            </div>
+            <div class="row keyrow">
+              <key><digit>1</digit></key><key><digit>2</digit></key><key><digit>3</digit></key>
+              <key class="spare"></key>
+            </div>
+            <div class="row keyrow">
+              <key><digit>0</digit></key><key><digit>00</digit></key><key><digit id="backspace"><</digit></key>
+              <key class="spare"></key>
+            </div>
+        </section>
+     <form>
+       <a href="#" class="button expand button alert">Clear</a>
+     </form> 
+</div>
+
+<!---SCRIPTS ANGEL ADDED THE JQUERY DIST BECAUSE HAVING ISSUES WITH ON METHOD-->
+    <script src="script/vendor/jquery.js"></script>
+    <script src="script/moment.js"></script>
+    <script src="script/moment-duration-format.js"></script>
+    <script src="script/jquery.tagsinput.js"></script>
+    <script src='script/jquery.transit.js'></script>
+    <script src="script/foundation.min.js"></script>
+    <script src="script/foundation/foundation.slider.js"></script>
+    <script src="script/foundation/foundation.offcanvas.js"></script>
+    <script src="script/mousetrap.min.js"></script>
+    <script src="script/FileSaver.min.js"></script>
+    <script src="script/app.js"></script>
+    <script src="script/annyang.min.js"></script>
+    <script> $(document).foundation({ }); </script>
+
+</body>
+</html>
