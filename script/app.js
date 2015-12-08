@@ -189,11 +189,12 @@ FSGlobal.$clearbtn = $("#clearbtn") ; // HAND JAMMER
 
 	function googleSpreadsheetIntegration(event){
 
+	   // var textofBtn = document.getElementById(FSGlobal.btnID).innerHTML;
+	   // var $form = $("#bugNotes, #bibNumber, #raceName").add(document.getElementById(FSGlobal.btnID)); //textofBtn) ; //FIND THE IDS THAT ARE EXACTLY AS THE GOOGLE HEADER, TURN THE BUTTON CLICKED INTO AN ID THAT IS ALSO SEARCHED.
+	    var $form = $("#bugNotes, #bibNumber, #raceName"); //textofBtn) ; //FIND THE IDS THAT ARE EXACTLY AS THE GOOGLE HEADER, TURN THE BUTTON CLICKED INTO AN ID THAT IS ALSO SEARCHED.
 	    var $inputs = $form.find("input, select, textarea, text");
 	    var serializedData = $form.serialize() + FSGlobal.btnID; 
-	    console.log(serializedData,"serializedData");
 	    var $test = $(document.getElementById(FSGlobal.btnID));
-	    console.log($test.serialize(),"button serialized");
 	    var $focused = $(':focus');
 	    $inputs.prop("disabled", true); //NEED TO DISABLE ANY PROPERTIES ALREADY ON THE INPUTS.
 	    request = $.ajax({ // AJAX REQUEST.
