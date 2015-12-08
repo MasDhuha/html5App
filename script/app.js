@@ -124,18 +124,7 @@ FSGlobal.$clearbtn = $("#clearbtn") ; // HAND JAMMER
 	    keyin( targetValue );
 	});
 
-//MOMENT DURATION and CACULATIONS FUNCTIONALITY//
-	function momentDuration(MS, DECIMALPOINTS, forcedPattern){
-		var
-			milliseconds = MS == null ? 0 : MS,
-			duration = moment.duration(milliseconds),
-			precision = DECIMALPOINTS || 0,
-			patternChoice = forcedPattern || "d[days] HH:mm:ss";
-		if (milliseconds < 1000*60) { patternChoice = forcedPattern || "s"; precision = DECIMALPOINTS || 2; }
-		if (milliseconds >= 1000*60) { patternChoice = forcedPattern || "m:ss"; }
-		if (milliseconds >= 1000*60*60) { patternChoice = forcedPattern || "H:mm:ss"; }
-		return milliseconds === 0 ? "" : duration;
-	}
+///CALCULATOR's CALCULATION FUNCTIONALITY//
 
 	//CALCULATE THE DIFFERENCE BETWEEN LAP 1 AND LAP 2
 	function calculate(){ //not working properly for HH, DOES WORK FOR H.
