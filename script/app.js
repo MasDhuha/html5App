@@ -14,6 +14,8 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext; //Chrome
 //////////////////////////////////
 //////////GLOBAL VARIABLES///////
 ////////////////////////////////
+FSGlobal.$calculatorPage = $("#calculator"); 
+FSGlobal.$calculatorNav = $("#tocalculator");
 FSGlobal.$timeOne = $("#time1"); //CALCULATOR
 FSGlobal.$timeTwo = $("#time2"); //CALCULATOR
 FSGlobal.$timeDifference =$("#timedifference"); //CALCULATOR
@@ -23,13 +25,45 @@ FSGlobal.blurInput =[]; //CALCULATOR
 FSGlobal.$lap = $("#lap"); //CALCULATOR
 FSGlobal.$lapPlusDifference = $("#lapPlusDifference"); //CALCULATOR
 FSGlobal.btnID = []; // BUG APPLICATION
+FSGlobal.$bugPage = $("#bugs");
+FSGlobal.$bugNav = $("#tobugs");
+FSGlobal.$handJammerPage = $("#handJammer");
+FSGlobal.$handJammerNav = $("#tohandjammer")
 FSGlobal.$handJammerPlaces = $("#handJammerPlaces") ; // HAND JAMMER; order of numbers
 FSGlobal.$handJammerNumbers = $("#handJammerNumbers") ; // HAND JAMMER numbers in hand jammer box
 FSGlobal.$clearbtn = $("#clearbtn") ; // HAND JAMMER 
+FSGlobal.$nextbtn = $("#nextbtn") ; // carriage return HAND JAMMER
+
+
+FSGlobal.$handJammerNav.on("mousedown", tohandjammer);
+FSGlobal.$bugNav.on("mousedown", tobugs);
+FSGlobal.$calculatorNav.on("mousedown", tocalculator);
+
+////////////////
+///Navigation///
+////////////////
+
+	function tohandjammer(){
+		FSGlobal.$calculatorPage.hide();
+		FSGlobal.$bugPage.hide();
+		FSGlobal.$handJammerPage.show();
+	};
+
+	function tobugs(){
+		FSGlobal.$calculatorPage.hide();
+		FSGlobal.$handJammerPage.hide();
+		FSGlobal.$bugPage.show();
+	};
+
+	function tocalculator (){
+		FSGlobal.$calculatorPage.show();
+		FSGlobal.$handJammerPage.hide();
+		FSGlobal.$bugPage.hide();
+	};
 
 
 ///////////////////////////////////
-////CALCULATOR FUNCTIONALITY//////2
+////CALCULATOR FUNCTIONALITY//////
 //////////////////////////////////
 
 // MOUSETRAP //
@@ -83,11 +117,11 @@ FSGlobal.$clearbtn = $("#clearbtn") ; // HAND JAMMER
 
 	//following function enters in the keypad response.
 	function keyin(val){
-		if(FSGlobal.$timeOne.val().length < 12) { //move to next field after length 12 reached. hh:mm:ss.SS
+		if(FSGlobal.$timeOne.val().length < 11) { //move to next field after length 12 reached. hh:mm:ss.SS
 			FSGlobal.$timeOne.val( FSGlobal.$timeOne.val() + val );}
-		else if (FSGlobal.$timeTwo.val().length < 12) {
+		else if (FSGlobal.$timeTwo.val().length < 11) {
 			FSGlobal.$timeTwo.val( FSGlobal.$timeTwo.val() + val );}
-		else if (FSGlobal.$lap.val().length <12) {
+		else if (FSGlobal.$lap.val().length <11) {
 			FSGlobal.$lap.val( FSGlobal.$lap.val() + val );}
 		
 		//playBuffer( localStorage.audioCOIN ); // when you find your own audio play around with sounds here.
@@ -144,13 +178,13 @@ FSGlobal.$clearbtn = $("#clearbtn") ; // HAND JAMMER
 	}
 	//SETUP TO AUTOMATICALLY RUN ON CLICK IF MEETS THE LENGTH CRITERIA.
 	function runCalculate(){
-		if(FSGlobal.$timeTwo.val().length >11){
+		if(FSGlobal.$timeTwo.val().length ===11){
 			calculate();
 		}
 	}
 	//SETUP TO AUTOMATICALLY RUN ON CLICK IF MEETS THE LENGTH CRITERIA.
 	function runCalculateLap(){
-		if(FSGlobal.$lap.val().length===12){
+		if(FSGlobal.$lap.val().length===11){
 			calculateLap();
 		}
 	}
@@ -160,6 +194,7 @@ FSGlobal.$clearbtn = $("#clearbtn") ; // HAND JAMMER
 ////HAND JAMMER FUNCTIONALITY//////
 //////////////////////////////////
 
+	
 	//CLEAR BUTTON//
 
 	FSGlobal.$clearbtn.click(function(){
@@ -167,12 +202,45 @@ FSGlobal.$clearbtn = $("#clearbtn") ; // HAND JAMMER
 		FSGlobal.$handJammerPlaces.val("");
 	});
 
+	//NEXT BUTTON//
+	FSGlobal.$nextbtn.click(function(e){
+		var obj = FSGlobal.$handJammerNumbers.text(FSGlobal.$handJammerNumbers.val() + "\n");
+		console.log(FSGlobal.$handJammerNumbers.val() + "\n", "This is what I want the val to be");
+		console.log(obj.text(obj.text().replace(/\n/g,'<br/>')).text());
+	});
+
+	////////////////////
+	//Annyang Library//
+	///////////////////
+
+	//can't get this to work.
+	function runAnnyang(){if (annyang) {
+	  //carriage return on the command comma
+	  	var commands = {
+		    'comma': function() {
+		     	FSGlobal.$handJammerNumbers.val( FSGlobal.$handJammerNumbers.val() + '\n');
+		     	console.log("i hear you");
+		     	return FSGlobal.$handJammerNumbers.val();
+		  	  }
+	 	 };
+
+	  // Add our commands to annyang
+	 	 annyang.addCommands(commands);
+	  // Start listening. You can call this here, or attach this call to an event, button, etc.
+	  	annyang.start();
+		}
+
+	};
+	
+
+
 //////////////////////////////////////
 ////BUG APPLICATION FUNCTIONALITY/////
 /////////////////////////////////////
 
+
 //serialize will not work on a button because it is considered a successful event, this function bubbles up a level to figure out the attr.
-	$(".button").on("click", function(e){ //ON ANY BUTTON CLICK, RETURN ID 
+	$(".button").on("click", function(e){  
 	  	e.preventDefault(); //might not need
 	  	var button = $(e.target);
 	  	var result = button.parents('form').serialize()
@@ -182,14 +250,14 @@ FSGlobal.$clearbtn = $("#clearbtn") ; // HAND JAMMER
 	  					+encodeURI(button.attr('value'))
 	  					;
 	  	FSGlobal.btnID = result;
-	  	googleSpreadsheetIntegration(); //then run googleSpreadsheetIntegration.  
+	  	googleSpreadsheetIntegration(); 
 	 });
 
 //SUBMIT THE INFORMATION IN THE SAID FIELDS TO THEIR CORRESPONDING COLUMNS IN THE GOOGLE SCRIPT WEB APP//
 
 	function googleSpreadsheetIntegration(event){
 
-	    var $form = $("#bugNotes, #bibNumber, #raceName"); //textofBtn) ; //FIND THE IDS THAT ARE EXACTLY AS THE GOOGLE HEADER, TURN THE BUTTON CLICKED INTO AN ID THAT IS ALSO SEARCHED.
+	    var $form = $("#bugNotes, #bibNumber, #raceName"); //FIND THE IDS THAT ARE EXACTLY AS THE GOOGLE HEADER, TURN THE BUTTON CLICKED INTO AN ID THAT IS ALSO SEARCHED.
 	    var $inputs = $form.find("input, select, textarea, text");
 	    var serializedData = $form.serialize() + FSGlobal.btnID; 
 	    var $test = $(document.getElementById(FSGlobal.btnID));
@@ -270,7 +338,6 @@ FSGlobal.$clearbtn = $("#clearbtn") ; // HAND JAMMER
 FSGlobal.$timeDifference.on("change hover click blur mouseover", calculate);
 FSGlobal.$keysDOM.on("click", runCalculate);
 FSGlobal.$keysDOM.on("click", runCalculateLap);
-
-
+FSGlobal.$handJammerNumbers.on("change, focus", runAnnyang);
 
 });
